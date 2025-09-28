@@ -1,48 +1,48 @@
 /*
 #include <iostream>
 
-// Àç±Í ÇÔ¼ö·Î ÇÇº¸³ªÄ¡ ¼ö¿­À» °è»êÇÏ´Â ÇÔ¼ö
+// ìž¬ê·€ í•¨ìˆ˜ë¡œ í”¼ë³´ë‚˜ì¹˜ ìˆ˜ì—´ì„ ê³„ì‚°í•˜ëŠ” í•¨ìˆ˜
 long long fibonacci_recursive(int n) {
-    // nÀÌ 0ÀÌ°Å³ª 1ÀÏ °æ¿ì, nÀ» ±×´ë·Î ¹ÝÈ¯ (Á¾·á Á¶°Ç)
+    // nì´ 0ì´ê±°ë‚˜ 1ì¼ ê²½ìš°, nì„ ê·¸ëŒ€ë¡œ ë°˜í™˜ (ì¢…ë£Œ ì¡°ê±´)
     if (n <= 1) {
         return n;
     }
 
-    // ÀÌÀü µÎ Ç×ÀÇ ÇÕÀ» Àç±ÍÀûÀ¸·Î È£ÃâÇÏ¿© ¹ÝÈ¯
+    // ì´ì „ ë‘ í•­ì˜ í•©ì„ ìž¬ê·€ì ìœ¼ë¡œ í˜¸ì¶œí•˜ì—¬ ë°˜í™˜
     return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2);
 }
 
 int main() {
     int num;
-    std::cout << "¸î ¹øÂ° ÇÇº¸³ªÄ¡ Ç×À» ±¸ÇÒ±î¿ä? ";
+    std::cout << "ëª‡ ë²ˆì§¸ í”¼ë³´ë‚˜ì¹˜ í•­ì„ êµ¬í• ê¹Œìš”? ";
     std::cin >> num;
 
     if (num < 0) {
-        std::cout << "À½¼ö´Â ÀÔ·ÂÇÒ ¼ö ¾ø½À´Ï´Ù." << std::endl;
+        std::cout << "ìŒìˆ˜ëŠ” ìž…ë ¥í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤." << std::endl;
     }
     else {
-        std::cout << num << "¹øÂ° ÇÇº¸³ªÄ¡ Ç×Àº " << fibonacci_recursive(num) << "ÀÔ´Ï´Ù." << std::endl;
+        std::cout << num << "ë²ˆì§¸ í”¼ë³´ë‚˜ì¹˜ í•­ì€ " << fibonacci_recursive(num) << "ìž…ë‹ˆë‹¤." << std::endl;
     }
 
     return 0;
 }*/
-// Àç±Í ÇÔ¼ö¸¦ »ç¿ëÇÒ ½Ã ÇÔ¼ö¸¦ È£ÃâÇÒ ¶§¸¶´Ù ½ºÅÃ¿¡ ¸Þ¸ð¸® Á¤º¸ ½×¿©, ½ºÅÃ ¿À¹öÇÃ·Î¿ì ¹ß»ý 
-// ÄÚµåÀÇ Á÷°ü¼ºÀº ³ôÁö¸¸ Áßº¹ °è»êÀÌ ¸¹Àº °æ¿ì ÀûÇÕÇÏÁö ¾ÊÀ½. -> ¹Ýº¹ÀÌ³ª µ¿Àû ÇÁ·Î±×·¡¹Ö »ç¿ë
+// ìž¬ê·€ í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•  ì‹œ í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•  ë•Œë§ˆë‹¤ ìŠ¤íƒì— ë©”ëª¨ë¦¬ ì •ë³´ ìŒ“ì—¬, ìŠ¤íƒ ì˜¤ë²„í”Œë¡œìš° ë°œìƒ 
+// ì½”ë“œì˜ ì§ê´€ì„±ì€ ë†’ì§€ë§Œ ì¤‘ë³µ ê³„ì‚°ì´ ë§Žì€ ê²½ìš° ì í•©í•˜ì§€ ì•ŠìŒ. -> ë°˜ë³µì´ë‚˜ ë™ì  í”„ë¡œê·¸ëž˜ë° ì‚¬ìš©
 
 
 #include <iostream>
 
-// ¹Ýº¹¹®À¸·Î ÇÇº¸³ªÄ¡ ¼ö¿­À» °è»êÇÏ´Â ÇÔ¼ö
+// ë°˜ë³µë¬¸ìœ¼ë¡œ í”¼ë³´ë‚˜ì¹˜ ìˆ˜ì—´ì„ ê³„ì‚°í•˜ëŠ” í•¨ìˆ˜
 long long fibonacci_iterative(int n) {
     if (n <= 1) {
         return n;
     }
 
-    long long a = 0; // 0¹øÂ° Ç×
-    long long b = 1; // 1¹øÂ° Ç×
+    long long a = 0; // 0ë²ˆì§¸ í•­
+    long long b = 1; // 1ë²ˆì§¸ í•­
     long long result = 0;
 
-    // 2¹øÂ° Ç×ºÎÅÍ n¹øÂ° Ç×±îÁö ¹Ýº¹ÇÏ¸ç °è»ê
+    // 2ë²ˆì§¸ í•­ë¶€í„° në²ˆì§¸ í•­ê¹Œì§€ ë°˜ë³µí•˜ë©° ê³„ì‚°
     for (int i = 2; i <= n; ++i) {
         result = a + b;
         a = b;
@@ -54,18 +54,18 @@ long long fibonacci_iterative(int n) {
 
 int main() {
     int num;
-    std::cout << "¸î ¹øÂ° ÇÇº¸³ªÄ¡ Ç×À» ±¸ÇÒ±î¿ä? ";
+    std::cout << "ëª‡ ë²ˆì§¸ í”¼ë³´ë‚˜ì¹˜ í•­ì„ êµ¬í• ê¹Œìš”? ";
     std::cin >> num;
 
     if (num < 0) {
-        std::cout << "À½¼ö´Â ÀÔ·ÂÇÒ ¼ö ¾ø½À´Ï´Ù." << std::endl;
+        std::cout << "ìŒìˆ˜ëŠ” ìž…ë ¥í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤." << std::endl;
     }
     else {
-        std::cout << num << "¹øÂ° ÇÇº¸³ªÄ¡ Ç×Àº " << fibonacci_iterative(num) << "ÀÔ´Ï´Ù." << std::endl;
+        std::cout << num << "ë²ˆì§¸ í”¼ë³´ë‚˜ì¹˜ í•­ì€ " << fibonacci_iterative(num) << "ìž…ë‹ˆë‹¤." << std::endl;
     }
 
     return 0;
 }
 
-// °á°ú°ª¿¡ 200°ú °°ÀÌ ³ÖÀ¸¸é Á¤¼ö ¿À¹öÅ¬·Î¿ì ¹ß»ý ( À½¼ö°ª ³ª¿È ) / long long Àº 64ºñÆ®Çü Á¤¼öÇü À¸·Î¼­ ´ëÃæ 93¹ø¤Š±îÁö°¡ ÇÑ°è . 
-// ´õ Å« ¼ö¸¦ °è»êÇÏ·Á¸é ´õ Å« ¼ö¸¦ ´Ù·ê ¼ö ÀÖ´Â ¹æ¹ý ÇÊ¿ä 
+// ê²°ê³¼ê°’ì— 200ê³¼ ê°™ì´ ë„£ìœ¼ë©´ ì •ìˆ˜ ì˜¤ë²„í´ë¡œìš° ë°œìƒ ( ìŒìˆ˜ê°’ ë‚˜ì˜´ ) / long long ì€ 64ë¹„íŠ¸í˜• ì •ìˆ˜í˜• ìœ¼ë¡œì„œ ëŒ€ì¶© 93ë²ˆÂŠê¹Œì§€ê°€ í•œê³„ . 
+// ë” í° ìˆ˜ë¥¼ ê³„ì‚°í•˜ë ¤ë©´ ë” í° ìˆ˜ë¥¼ ë‹¤ë£° ìˆ˜ ìžˆëŠ” ë°©ë²• í•„ìš” 
