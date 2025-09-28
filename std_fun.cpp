@@ -5,64 +5,64 @@
 #include <random>
 #include <chrono>
 
-// ÇĞ»ı Á¤º¸¸¦ ´ã´Â ±¸Á¶Ã¼
+// í•™ìƒ ì •ë³´ë¥¼ ë‹´ëŠ” êµ¬ì¡°ì²´
 struct Student {
     std::string name;
     int score;
-    int id; // ÇĞ»ıÀÇ °íÀ¯ ¹øÈ£
+    int id; // í•™ìƒì˜ ê³ ìœ  ë²ˆí˜¸
 };
 
-// ÀÌ¸§¼øÀ¸·Î Á¤·ÄÇÏ±â À§ÇÑ ºñ±³ ÇÔ¼ö
+// ì´ë¦„ìˆœìœ¼ë¡œ ì •ë ¬í•˜ê¸° ìœ„í•œ ë¹„êµ í•¨ìˆ˜
 bool compareByName(const Student& a, const Student& b) {
     return a.name < b.name;
 }
 
-// Á¡¼ö¼øÀ¸·Î ³»¸²Â÷¼ø Á¤·ÄÇÏ±â À§ÇÑ ºñ±³ ÇÔ¼ö
+// ì ìˆ˜ìˆœìœ¼ë¡œ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬í•˜ê¸° ìœ„í•œ ë¹„êµ í•¨ìˆ˜
 bool compareByScoreDesc(const Student& a, const Student& b) {
     return a.score > b.score;
 }
 
-// ÇĞ»ı µ¥ÀÌÅÍ¸¦ Ãâ·ÂÇÏ´Â ÇÔ¼ö
+// í•™ìƒ ë°ì´í„°ë¥¼ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
 void printStudents(const std::string& title, const std::vector<Student>& students) {
     std::cout << "--- " << title << " ---" << std::endl;
     for (const auto& s : students) {
-        std::cout << "ID: " << s.id << ", ÀÌ¸§: " << s.name << ", Á¡¼ö: " << s.score << std::endl;
+        std::cout << "ID: " << s.id << ", ì´ë¦„: " << s.name << ", ì ìˆ˜: " << s.score << std::endl;
     }
     std::cout << std::endl;
 }
 
 int main() {
-    // 1. ÃÊ±â ÇĞ»ı µ¥ÀÌÅÍ »ı¼º
+    // 1. ì´ˆê¸° í•™ìƒ ë°ì´í„° ìƒì„±
     std::vector<Student> students = {
-        {"°ÅºÏÀÌ", 85, 101},
-        {"¸Á¾ÆÁö", 92, 102},
-        {"È£¶ûÀÌ", 85, 103},
-        {"°í¾çÀÌ", 78, 104},
-        {"°­¾ÆÁö", 92, 105},
-        {"¼Û¾ÆÁö", 95, 106}
+        {"ê±°ë¶ì´", 85, 101},
+        {"ë§ì•„ì§€", 92, 102},
+        {"í˜¸ë‘ì´", 85, 103},
+        {"ê³ ì–‘ì´", 78, 104},
+        {"ê°•ì•„ì§€", 92, 105},
+        {"ì†¡ì•„ì§€", 95, 106}
     };
 
-    printStudents("ÃÊ±â ÇĞ»ı ¸í´Ü", students);
+    printStudents("ì´ˆê¸° í•™ìƒ ëª…ë‹¨", students);
 
-    // 2. std::sort¿Í Ä¿½ºÅÒ ºñ±³ ÇÔ¼ö »ç¿ë
-    // ÀÌ¸§À» ±âÁØÀ¸·Î Á¤·Ä. µ¿Á¡ÀÚ(score 85, 92)ÀÇ ¼ø¼­´Â º¸ÀåµÇÁö ¾ÊÀ½.
+    // 2. std::sortì™€ ì»¤ìŠ¤í…€ ë¹„êµ í•¨ìˆ˜ ì‚¬ìš©
+    // ì´ë¦„ì„ ê¸°ì¤€ìœ¼ë¡œ ì •ë ¬. ë™ì ì(score 85, 92)ì˜ ìˆœì„œëŠ” ë³´ì¥ë˜ì§€ ì•ŠìŒ.
     std::sort(students.begin(), students.end(), compareByName);
-    printStudents("ÀÌ¸§¼ø Á¤·Ä (std::sort)", students);
+    printStudents("ì´ë¦„ìˆœ ì •ë ¬ (std::sort)", students);
 
-    // 3. std::stable_sort¿Í Ä¿½ºÅÒ ºñ±³ ÇÔ¼ö »ç¿ë
-    // Á¡¼ö¸¦ ±âÁØÀ¸·Î Á¤·ÄÇÏµÇ, µ¿Á¡ÀÚÀÇ ¼ø¼­(ID)¸¦ À¯Áö.
-    // Eva(92, ID: 105)¿Í Bob(92, ID: 102)Àº ÃÊ±â ¼ø¼­°¡ Eva-BobÀÌ¹Ç·Î Á¤·Ä ÈÄ¿¡µµ ÀÌ ¼ø¼­¸¦ À¯ÁöÇÔ.
+    // 3. std::stable_sortì™€ ì»¤ìŠ¤í…€ ë¹„êµ í•¨ìˆ˜ ì‚¬ìš©
+    // ì ìˆ˜ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì •ë ¬í•˜ë˜, ë™ì ìì˜ ìˆœì„œ(ID)ë¥¼ ìœ ì§€.
+    // Eva(92, ID: 105)ì™€ Bob(92, ID: 102)ì€ ì´ˆê¸° ìˆœì„œê°€ Eva-Bobì´ë¯€ë¡œ ì •ë ¬ í›„ì—ë„ ì´ ìˆœì„œë¥¼ ìœ ì§€í•¨.
     std::stable_sort(students.begin(), students.end(), compareByScoreDesc);
-    printStudents("Á¡¼ö ³»¸²Â÷¼ø Á¤·Ä (std::stable_sort)", students);
+    printStudents("ì ìˆ˜ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬ (std::stable_sort)", students);
 
-    // 4. std::partial_sort¸¦ »ç¿ëÇÏ¿© »óÀ§ 3¸í¸¸ Á¤·Ä
-    // ÀüÃ¼ ÇĞ»ı Áß Á¡¼ö »óÀ§ 3¸í¸¸ Á¤·ÄÇÏ°í, ³ª¸ÓÁö´Â Á¤·ÄÇÏÁö ¾ÊÀ½.
-    // ÀÌ ¹æ¹ıÀº ÀüÃ¼¸¦ Á¤·ÄÇÏ´Â °Íº¸´Ù ºü¸£´Ù.
+    // 4. std::partial_sortë¥¼ ì‚¬ìš©í•˜ì—¬ ìƒìœ„ 3ëª…ë§Œ ì •ë ¬
+    // ì „ì²´ í•™ìƒ ì¤‘ ì ìˆ˜ ìƒìœ„ 3ëª…ë§Œ ì •ë ¬í•˜ê³ , ë‚˜ë¨¸ì§€ëŠ” ì •ë ¬í•˜ì§€ ì•ŠìŒ.
+    // ì´ ë°©ë²•ì€ ì „ì²´ë¥¼ ì •ë ¬í•˜ëŠ” ê²ƒë³´ë‹¤ ë¹ ë¥´ë‹¤.
     std::partial_sort(students.begin(), students.begin() + 3, students.end(), compareByScoreDesc);
-    printStudents("»óÀ§ 3¸í¸¸ Á¡¼ö¼ø Á¤·Ä (std::partial_sort)", students);
+    printStudents("ìƒìœ„ 3ëª…ë§Œ ì ìˆ˜ìˆœ ì •ë ¬ (std::partial_sort)", students);
 
-    // ÀÌ ¿Ü¿¡µµ std::nth_element¸¦ »ç¿ëÇÏ¸é N¹øÂ° ¿ø¼Ò¸¸ Ã£¾Æ¼­ Á¦ À§Ä¡¿¡ ³õ°í,
-    // ´Ù¸¥ ¿ø¼ÒµéÀº N¹øÂ° ¿ø¼Ò¸¦ ±âÁØÀ¸·Î ³ª´­ ¼ö ÀÖ½À´Ï´Ù.
+    // ì´ ì™¸ì—ë„ std::nth_elementë¥¼ ì‚¬ìš©í•˜ë©´ Në²ˆì§¸ ì›ì†Œë§Œ ì°¾ì•„ì„œ ì œ ìœ„ì¹˜ì— ë†“ê³ ,
+    // ë‹¤ë¥¸ ì›ì†Œë“¤ì€ Në²ˆì§¸ ì›ì†Œë¥¼ ê¸°ì¤€ìœ¼ë¡œ ë‚˜ëˆŒ ìˆ˜ ìˆìŠµë‹ˆë‹¤.
 
     return 0;
 }
