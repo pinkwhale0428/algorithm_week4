@@ -1,44 +1,44 @@
 #include <iostream>
 
-// µ¿ÀüÀÇ Á¾·ù¸¦ ¹è¿­¿¡ ÀúÀåÇÕ´Ï´Ù.
+// ë™ì „ì˜ ì¢…ë¥˜ë¥¼ ë°°ì—´ì— ì €ì¥í•©ë‹ˆë‹¤.
 const int COINS[] = { 500, 100, 50, 10 };
 const int NUM_COINS = sizeof(COINS) / sizeof(COINS[0]);
 
-// °¡Àå ÀûÀº ¼öÀÇ µ¿ÀüÀ¸·Î ±İ¾×À» °è»êÇÏ°í Ãâ·ÂÇÏ´Â ÇÔ¼ö
+// ê°€ì¥ ì ì€ ìˆ˜ì˜ ë™ì „ìœ¼ë¡œ ê¸ˆì•¡ì„ ê³„ì‚°í•˜ê³  ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
 void get_change(int amount) {
-    int coin_counts[NUM_COINS] = { 0 }; // °¢ µ¿ÀüÀÇ °³¼ö¸¦ ÀúÀåÇÒ ¹è¿­
-    int remaining_amount = amount; // ³²Àº ±İ¾×
-    int total_coins = 0; // ÃÑ µ¿Àü °³¼ö
+    int coin_counts[NUM_COINS] = { 0 }; // ê° ë™ì „ì˜ ê°œìˆ˜ë¥¼ ì €ì¥í•  ë°°ì—´
+    int remaining_amount = amount; // ë‚¨ì€ ê¸ˆì•¡
+    int total_coins = 0; // ì´ ë™ì „ ê°œìˆ˜
 
-    // µ¿Àü ¹è¿­À» ¼ø¼­´ë·Î µ¹¸é¼­ °è»êÇÕ´Ï´Ù.
+    // ë™ì „ ë°°ì—´ì„ ìˆœì„œëŒ€ë¡œ ëŒë©´ì„œ ê³„ì‚°í•©ë‹ˆë‹¤.
     for (int i = 0; i < NUM_COINS; ++i) {
         int current_coin = COINS[i];
 
         if (remaining_amount >= current_coin) {
-            // ÇöÀç µ¿ÀüÀ¸·Î °Å½½·¯ ÁÙ ¼ö ÀÖ´Â °³¼ö¸¦ °è»êÇÕ´Ï´Ù.
+            // í˜„ì¬ ë™ì „ìœ¼ë¡œ ê±°ìŠ¬ëŸ¬ ì¤„ ìˆ˜ ìˆëŠ” ê°œìˆ˜ë¥¼ ê³„ì‚°í•©ë‹ˆë‹¤.
             int count = remaining_amount / current_coin;
             coin_counts[i] = count;
             total_coins += count;
 
-            // ³²Àº ±İ¾×À» °»½ÅÇÕ´Ï´Ù.
+            // ë‚¨ì€ ê¸ˆì•¡ì„ ê°±ì‹ í•©ë‹ˆë‹¤.
             remaining_amount %= current_coin;
         }
     }
 
-    // °á°ú¸¦ Ãâ·ÂÇÕ´Ï´Ù.
-    std::cout << amount << "¿øÀ» °Å½½·¯ ÁÖ´Âµ¥ ÇÊ¿äÇÑ µ¿ÀüÀÇ °³¼ö:" << std::endl;
+    // ê²°ê³¼ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.
+    std::cout << amount << "ì›ì„ ê±°ìŠ¬ëŸ¬ ì£¼ëŠ”ë° í•„ìš”í•œ ë™ì „ì˜ ê°œìˆ˜:" << std::endl;
     for (int i = 0; i < NUM_COINS; ++i) {
         if (coin_counts[i] > 0) {
-            std::cout << COINS[i] << "¿ø: " << coin_counts[i] << "°³" << std::endl;
+            std::cout << COINS[i] << "ì›: " << coin_counts[i] << "ê°œ" << std::endl;
         }
     }
 
-    std::cout << "ÃÑ µ¿Àü °³¼ö: " << total_coins << "°³" << std::endl;
+    std::cout << "ì´ ë™ì „ ê°œìˆ˜: " << total_coins << "ê°œ" << std::endl;
 }
 
 int main() {
     int amount;
-    std::cout << "°Å½½·¯ ÁÙ ±İ¾×À» ÀÔ·ÂÇÏ¼¼¿ä: ";
+    std::cout << "ê±°ìŠ¬ëŸ¬ ì¤„ ê¸ˆì•¡ì„ ì…ë ¥í•˜ì„¸ìš”: ";
     std::cin >> amount;
 
     get_change(amount);
