@@ -5,7 +5,7 @@
 #include <random>
 #include <chrono>
 
-// 학생 정보를 담는 구조체
+// 학생 정보를 담는 구조체 
 struct Student {
     std::string name;
     int score;
