@@ -4,23 +4,23 @@
 #include <numeric>
 #include <map>
 
-// Á¤Á¡À» ¹®ÀÚ¿Í ¼ıÀÚ·Î ¸ÅÇÎÇÕ´Ï´Ù.
+// ì •ì ì„ ë¬¸ìì™€ ìˆ«ìë¡œ ë§¤í•‘í•©ë‹ˆë‹¤.
 std::map<char, int> vertex_map = {
     {'a', 0}, {'b', 1}, {'c', 2}, {'d', 3}, {'e', 4}, {'f', 5}
 };
 std::vector<char> vertex_names = { 'a', 'b', 'c', 'd', 'e', 'f' };
 
-// °£¼±À» ³ªÅ¸³»´Â ±¸Á¶Ã¼
+// ê°„ì„ ì„ ë‚˜íƒ€ë‚´ëŠ” êµ¬ì¡°ì²´
 struct Edge {
     int u, v, weight;
 };
 
-// °£¼±À» °¡ÁßÄ¡¿¡ µû¶ó Á¤·ÄÇÏ±â À§ÇÑ ºñ±³ ÇÔ¼ö
+// ê°„ì„ ì„ ê°€ì¤‘ì¹˜ì— ë”°ë¼ ì •ë ¬í•˜ê¸° ìœ„í•œ ë¹„êµ í•¨ìˆ˜
 bool compareEdges(const Edge& a, const Edge& b) {
     return a.weight < b.weight;
 }
 
-// Union-Find ÀÚ·á±¸Á¶
+// Union-Find ìë£Œêµ¬ì¡°
 class DisjointSet {
 public:
     std::vector<int> parent;
@@ -52,32 +52,32 @@ void kruskal(const std::vector<Edge>& all_edges) {
     std::vector<Edge> mst;
     int mst_weight = 0;
 
-    std::cout << "--- Å©·ç½ºÄ® ¾Ë°í¸®Áò ÁøÇà °úÁ¤ ---" << std::endl;
+    std::cout << "--- í¬ë£¨ìŠ¤ì¹¼ ì•Œê³ ë¦¬ì¦˜ ì§„í–‰ ê³¼ì • ---" << std::endl;
     for (const auto& edge : sorted_edges) {
-        std::cout << "  È®ÀÎ °£¼±: (" << vertex_names[edge.u] << "-" << vertex_names[edge.v] << ", °¡ÁßÄ¡: " << edge.weight << ")";
+        std::cout << "  í™•ì¸ ê°„ì„ : (" << vertex_names[edge.u] << "-" << vertex_names[edge.v] << ", ê°€ì¤‘ì¹˜: " << edge.weight << ")";
         if (ds.find(edge.u) != ds.find(edge.v)) {
             ds.unite(edge.u, edge.v);
             mst.push_back(edge);
             mst_weight += edge.weight;
-            std::cout << " -> MST¿¡ Ãß°¡" << std::endl;
+            std::cout << " -> MSTì— ì¶”ê°€" << std::endl;
         }
         else {
-            std::cout << " -> »çÀÌÅ¬ Çü¼ºÀ¸·Î °Ç³Ê¶Ü" << std::endl;
+            std::cout << " -> ì‚¬ì´í´ í˜•ì„±ìœ¼ë¡œ ê±´ë„ˆëœ€" << std::endl;
         }
     }
 
-    std::cout << "\n--- ÃÖÁ¾ MST °æ·Î ¹× ÃÑ °¡ÁßÄ¡ ---" << std::endl;
+    std::cout << "\n--- ìµœì¢… MST ê²½ë¡œ ë° ì´ ê°€ì¤‘ì¹˜ ---" << std::endl;
     for (const auto& edge : mst) {
-        std::cout << "  " << vertex_names[edge.u] << " -- " << vertex_names[edge.v] << " (°¡ÁßÄ¡: " << edge.weight << ")" << std::endl;
+        std::cout << "  " << vertex_names[edge.u] << " -- " << vertex_names[edge.v] << " (ê°€ì¤‘ì¹˜: " << edge.weight << ")" << std::endl;
     }
 
-    std::cout << "ÃÑ °¡ÁßÄ¡: " << mst_weight << std::endl;
+    std::cout << "ì´ ê°€ì¤‘ì¹˜: " << mst_weight << std::endl;
 }
 
 int main() {
     std::vector<Edge> edges;
 
-    // ÁÖ¾îÁø °£¼± Á¤º¸
+    // ì£¼ì–´ì§„ ê°„ì„  ì •ë³´
     auto add_edge = [&](char u_char, char v_char, int weight) {
         edges.push_back({ vertex_map[u_char], vertex_map[v_char], weight });
         };
